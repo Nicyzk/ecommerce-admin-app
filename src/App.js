@@ -10,6 +10,7 @@ import Signin from './containers/Signin/Signin'
 import PrivateRoute from './components/hoc/PrivateRoute'
 import { useSelector, useDispatch } from 'react-redux'
 import { isUserLoggedIn } from './store/actions/authActions'
+import { getInitialData } from './store/actions/initialDataActions'
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
     if (!auth.authenticated) {
       dispatch(isUserLoggedIn())
     }
+    dispatch(getInitialData())
   }, [])
 
   return (

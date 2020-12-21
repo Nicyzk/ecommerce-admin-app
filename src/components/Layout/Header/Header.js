@@ -29,7 +29,7 @@ const Header = () => {
   )
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect fixed="top" expand="lg" bg="dark" variant="dark">
       <Container fluid>
         {/* <Navbar.Brand href="#home">SEQUOIA</Navbar.Brand> */}
         <Link to="/" className="navbar-brand">SEQUOIA</Link>

@@ -2,16 +2,21 @@
     position: fixed;
     height: 100%;
     background-color: #f7f7f7;
-    padding: 0px;
+    padding: 56px 0px 0px 0px;
 }
 
 .content {
     margin-left: auto;
     height: 100vh;
+    padding-top: 56px;
 }
 
 .sidebar ul{
     padding: 0px;
+}
+
+.sidebar ul li{
+    list-style: none;
 }
 
 .sidebar ul li a {

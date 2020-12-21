@@ -11,7 +11,6 @@ const signup = (user) => {
         })
         if (res.status === 200) {
             const { message } = res.data
-            console.log(message)
             dispatch({
                 type: signupActionTypes.SIGNUP_SUCCESS,
                 payload: { message }

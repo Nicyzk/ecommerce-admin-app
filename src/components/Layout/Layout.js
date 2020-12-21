@@ -9,7 +9,7 @@ const layout = (props) => {
         <React.Fragment>
             <Header/>
             {props.sidebar ? (
-                <Container fluid>
+                <Container fluid >
                     <Row >
                         <Col md={2} className="sidebar">
                             <ul>

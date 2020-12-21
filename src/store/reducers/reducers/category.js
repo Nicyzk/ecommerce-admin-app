@@ -7,15 +7,23 @@ const initialState = {
     categories: []
 }
 
-const updateCategories = (categories, category) => {
+const updateCategories = (parentId, categories, category) => {
     let list = []
+    
+    if (!category.parentId) {
+        return [
+            ...categories,
+            category
+        ]
+    }
+
     for (let cat of categories) {
         list.push({
             ...cat,
-            children: cat.children.length > 0 ? updateCategories(cat.children, category) : []
+            children: updateCategories(cat.id, cat.children, category)
         })
     }
-    if (categories[0].parentId && categories[0].parentId === category.parentId) {
+    if (parentId === category.parentId) {
         list.push({
             ...category
         })
@@ -48,7 +56,7 @@ const reducer = (state = initialState, action) => {
                 loading: true
             }
         case categoryActionTypes.ADD_CATEGORY_SUCCESS:
-            const updatedCategory = updateCategories(state.categories, action.payload.category)
+            const updatedCategory = updateCategories(undefined, state.categories, action.payload.category)
             return {
                 ...state,
                 loading: false,

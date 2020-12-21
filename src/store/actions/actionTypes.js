@@ -26,7 +26,16 @@ const categoryActionTypes = {
 const productActionTypes = {
     ADD_PRODUCT_REQUEST: "ADD_PRODUCT_REQUEST",
     ADD_PRODUCT_SUCCESS: "ADD_PRODUCT_SUCCESS",
-    ADD_PRODUCT_FAILURE: "ADD_PRODUCT_FAILURE"
+    ADD_PRODUCT_FAILURE: "ADD_PRODUCT_FAILURE",
+    GET_PRODUCTS_REQUEST: "GET_PRODUCTS_REQUEST",
+    GET_PRODUCTS_SUCCESS: "GET_PRODUCTS_SUCCESS",
+    GET_PRODUCTS_FAILURE: "GET_PRODUCTS_FAILURE",
 }
 
-export {authActionTypes, signupActionTypes, categoryActionTypes, productActionTypes}
+const initialDataActionTypes = {
+    GET_INITIAL_DATA_REQUEST: "GET_INITIAL_DATA_REQUEST",
+    GET_INITIAL_DATA_SUCCESS: "GET_INITIAL_DATA_SUCCESS",
+    GET_INITIAL_DATA_FAILURE: "GET_INITIAL_DATA_FAILURE"
+}
+
+export {authActionTypes, signupActionTypes, categoryActionTypes, productActionTypes, initialDataActionTypes}
