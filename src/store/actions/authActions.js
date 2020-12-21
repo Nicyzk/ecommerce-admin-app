@@ -56,11 +56,25 @@ const isUserLoggedIn = () => {
 }
 
 const logout = () => {
-    return dispatch => {
-        localStorage.clear()
+    return async dispatch => {
         dispatch({
-            type: authActionTypes.LOGOUT_REQUEST
+            type: authActionTypes.LOGIN_REQUEST
         })
+        const res = await axios.post('/auth/admin/signout')
+        if (res.status === 200) {
+            localStorage.clear()
+            dispatch({
+                type: authActionTypes.LOGOUT_SUCCESS
+            })
+        } else {
+            dispatch({
+                type: authActionTypes.LOGOUT_FAILURE,
+                payload: {
+                    error: res.data.error
+                }
+            })
+        }
+
     }
 }
 

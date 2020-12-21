@@ -1,0 +1,30 @@
+.sidebar {
+    position: fixed;
+    height: 100%;
+    background-color: #f7f7f7;
+    padding: 0px;
+}
+
+.content {
+    margin-left: auto;
+    height: 100vh;
+}
+
+.sidebar ul{
+    padding: 0px;
+}
+
+.sidebar ul li a {
+    display: block;
+    margin: 0px 0px 5px 0px;
+    padding: 8px 30px;
+    border-radius: 0px 0px 5px 0px;
+    border: 1px;
+    text-decoration: none;
+    color: #0275d8;
+}
+
+.sidebar ul li a.active {
+    color: white;
+    background-color :#292b2c;
+}

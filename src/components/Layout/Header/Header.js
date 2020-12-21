@@ -20,7 +20,10 @@ const Header = () => {
   const loggedInLinks = (
     <Nav>
       <li className="nav-item">
-        <span style={{ cursor: "pointer" }} onClick={() => {dispatch(logout())}} className="nav-link">Sign Out</span>
+        <span 
+        style={{ cursor: "pointer" }} 
+        onClick={() => {dispatch(logout())}} 
+        className="nav-link">Sign Out</span>
       </li>
     </Nav> 
   )

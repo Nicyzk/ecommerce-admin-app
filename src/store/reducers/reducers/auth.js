@@ -8,10 +8,14 @@ const initialState = {
         picture: ''
     },
     authenticated: false,
-    authenticating: false
+    authenticating: false,
+    loggingOut: false, 
+    error: null,
+    message: ''
 }
 
 const reducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
         case authActionTypes.LOGIN_REQUEST: 
             return {
@@ -29,11 +33,22 @@ const reducer = (state = initialState, action) => {
         case authActionTypes.LOGIN_FAILURE:
             return {
                 ...state,
-
+                authenticating: false
             }
         case authActionTypes.LOGOUT_REQUEST:
             return {
-                ...initialState    
+                ...state,
+                loggingOut: true
+            }
+        case authActionTypes.LOGOUT_SUCCESS:
+            return {
+                ...initialState
+            }
+        case authActionTypes.LOGOUT_FAILURE:
+            return {
+                ...state,
+                loggingOut: false,
+                error: action.payload.error
             }
         default: return state
     }
