@@ -7,9 +7,9 @@ const initialState = {
     categories: []
 }
 
-const updateCategories = (parentId, categories, category) => {
+const updateCategories = (categories, category) => {
     let list = []
-    
+
     if (!category.parentId) {
         return [
             ...categories,
@@ -18,15 +18,25 @@ const updateCategories = (parentId, categories, category) => {
     }
 
     for (let cat of categories) {
-        list.push({
-            ...cat,
-            children: updateCategories(cat.id, cat.children, category)
-        })
-    }
-    if (parentId === category.parentId) {
-        list.push({
-            ...category
-        })
+        if (cat.id === category.parentId) {
+            const newCategory = {
+                id: category.id,
+                name: category.name,
+                slug: category.slug,
+                type: category.type,
+                parentId: category.parentId,
+                children: []
+            }
+            list.push({
+                ...cat,
+                children: cat.children.length > 0 ? [...cat.children, newCategory] : [newCategory]
+            })
+        } else {
+            list.push({
+                ...cat,
+                children: cat.children.length > 0 ? updateCategories(cat.children, category) : []
+            })
+        }
     }
     return list
 }
@@ -56,7 +66,7 @@ const reducer = (state = initialState, action) => {
                 loading: true
             }
         case categoryActionTypes.ADD_CATEGORY_SUCCESS:
-            const updatedCategory = updateCategories(undefined, state.categories, action.payload.category)
+            const updatedCategory = updateCategories(state.categories, action.payload.category)
             return {
                 ...state,
                 loading: false,
@@ -64,6 +74,38 @@ const reducer = (state = initialState, action) => {
                 categories: updatedCategory
             }
         case categoryActionTypes.ADD_CATEGORY_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+        case categoryActionTypes.UPDATE_CATEGORIES_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case categoryActionTypes.UPDATE_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            }
+        case categoryActionTypes.UPDATE_CATEGORIES_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload.error
+            }
+        case categoryActionTypes.DELETE_CATEGORIES_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case categoryActionTypes.DELETE_CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                loading: false
+            }
+        case categoryActionTypes.DELETE_CATEGORIES_FAILURE:
             return {
                 ...state,
                 loading: false,

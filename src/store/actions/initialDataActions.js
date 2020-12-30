@@ -6,10 +6,9 @@ const getInitialData = () => {
         dispatch({
             type: categoryActionTypes.GET_ALL_CATEGORIES_REQUEST
         })
-        const res = await axios.post('/initialdata/admin')
+        const res = await axios.post('/admin/initialdata')
         if (res.status === 200) {
             const { categoryList, products } = res.data
-            console.log(res)
             dispatch({
                 type: categoryActionTypes.GET_ALL_CATEGORIES_SUCCESS,
                 payload: {

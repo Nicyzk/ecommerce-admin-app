@@ -1,0 +1,9 @@
+.modal {
+    top: 100px;
+}
+
+.modalHeader {
+    background-color: #292b2c;
+    color:white;
+    font-size: 18px;
+}

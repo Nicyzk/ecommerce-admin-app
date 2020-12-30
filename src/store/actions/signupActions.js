@@ -6,7 +6,7 @@ const signup = (user) => {
         dispatch({
             type: signupActionTypes.SIGNUP_REQUEST
         })
-        const res = await axios.post('/auth/admin/signup', {
+        const res = await axios.post('/admin/auth/signup', {
             ...user
         })
         if (res.status === 200) {

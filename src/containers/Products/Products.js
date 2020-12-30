@@ -55,6 +55,15 @@ const Products = () => {
             form.append('productPicture', pic)
         }
         dispatch(addProduct(form))
+        setName('')
+        setPrice(0)
+        setQuantity(0)
+        setDescripton('')
+        setCategoryId('')
+        setProductPicture([])
+        //Note: resetting of add product modal state only causes ONE render as it is COMBINED.
+        //It is done after add product request action but BEFORE add product success action 
+        //as there is an async req in btn. Total two renders
     }
 
     const renderAddProductModal = () => {
